@@ -32,7 +32,7 @@ header {
     grid-template-areas: "overlap";
     width: 100%;
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .laptop-view {
@@ -40,13 +40,13 @@ header {
     display: grid;
     grid-template-areas: 
         "left middle right";
-    grid-template-columns: .75fr 3fr 4fr;
+    grid-template-columns: .75fr 3.5fr 4.75fr;
     align-items: center;
-    width: 98%;
+    width: 99%;
     height: 90%;
     z-index: 10; /* Ensure it stays above other content */
     margin: auto;
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .left {
@@ -64,3 +64,20 @@ header {
     justify-self: end;
 }
 
+.right ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Allows items to wrap if needed */
+    justify-content: flex-end;
+}
+
+.right li {
+    white-space: nowrap;
+    
+}
+
+.right ul li{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 1rem;
+}
