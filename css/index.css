@@ -61,7 +61,7 @@ header {
 
 .right {
     grid-column: 3;
-    justify-self: end;
+    justify-self: center;
 }
 
 .right ul {
