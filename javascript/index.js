@@ -1,78 +1,101 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
+    // Mobile menu functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const menuOverlay = document.createElement('div');
     
-    // Add click event listeners to each navigation link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Get the target section ID from the href attribute
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            // Scroll to the target section with smooth behavior
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
+    // Create overlay element
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+    
+    // Toggle mobile menu
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    // Dropdown functionality for mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 600) {
+                e.preventDefault();
+                const dropdown = this.parentElement;
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown.active').forEach(activeDropdown => {
+                    if (activeDropdown !== dropdown) {
+                        activeDropdown.classList.remove('active');
+                        activeDropdown.querySelector('.dropdown-menu').classList.remove('active');
+                    }
                 });
                 
-                // Update active link
-                updateActiveLink(this);
+                // Toggle current dropdown
+                dropdown.classList.toggle('active');
+                dropdownMenu.classList.toggle('active');
             }
         });
     });
     
-    // Function to update the active navigation link
-    function updateActiveLink(activeLink) {
-        // Remove active class from all links
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        
-        // Add active class to the clicked link
-        activeLink.classList.add('active');
-    }
-    
-    // Add event listener to the appointment button in the banner
-    const appointmentButton = document.getElementById('appointment-button');
-    if (appointmentButton) {
-        appointmentButton.addEventListener('click', function() {
-            const appointmentSection = document.getElementById('appointment-section');
-            if (appointmentSection) {
-                appointmentSection.scrollIntoView({
-                    behavior: 'smooth'
+    // Close dropdowns when clicking outside (desktop)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth > 600) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
                 });
-                
-                // Update active link to "Book Appointment"
-                const appointmentLink = document.querySelector('a[href="#appointment-section"]');
-                if (appointmentLink) {
-                    updateActiveLink(appointmentLink);
-                }
             }
-        });
-    }
+        }
+    });
     
-    // Update active link based on scroll position
-    window.addEventListener('scroll', function() {
-        let current = '';
-        const sections = document.querySelectorAll('.content-section');
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 600) {
+            // Reset mobile menu state on desktop
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
             
-            if (pageYOffset >= (sectionTop - 100)) {
-                current = section.getAttribute('id');
+            // Reset dropdown states
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('active');
+                menu.style.maxHeight = '';
+            });
+        }
+    });
+    
+    // Keyboard navigation support
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            // Close mobile menu on ESC
+            if (window.innerWidth <= 600 && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                menuToggle.focus();
             }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
+            
+            // Close dropdowns on ESC
+            document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+                dropdown.classList.remove('active');
+                if (window.innerWidth <= 600) {
+                    dropdown.querySelector('.dropdown-menu').classList.remove('active');
+                }
+            });
+        }
     });
 });

@@ -1,98 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Izzy-Alteration</title>
-    <meta name="description" content="Short page description">
-    <meta name="theme-color" content="#ffffff">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico">
-    
-    <!-- CSS files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design</title>
     <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/index.css">
-
-    
-
 </head>
 <body>
-    <div class="container">
-        <!--Header Section-->
-        <header>
-            <!--Navigation-Section-->
-            <nav class="laptop-view">
-                <section class="left">
-           
-                </section>
-
-                <section class="middle">
-                   <h1><a href="/home/bernard/Desktop/Project/Bernard-Business/html/index.html" style="text-decoration: none;">Company Name</a></h1>
-                </section>
-                
-                <section class="right">
-                    <ul>
-                        <li><a href="#" style="text-decoration: none;" class="nav-link">
-                            Account<span class="dropdown-arrow">▼</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/home/bernard/Desktop/Bernard-Business/html/login.html" style="text-decoration: none;">Log In</a></li>
-                                <li><a href="/home/bernard/Desktop/Bernard-Business/html/signup.html" style="text-decoration: none;">Create</a></li>
-                            </ul>
-                        </li>
-
-                   <!-- <li><a href="#services-section" style="text-decoration: none;" class="nav-link">
-                            Services <span class="dropdown-arrow">▼</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" style="text-decoration: none;">Custom made</a></li>
-                                <li><a href="#" style="text-decoration: none;">Alteration</a></li>
-                                <li><a href="#" style="text-decoration: none;">Repair</a></li>
-                            </ul>
-                        </li>
- -->
-                        
-                        <li><a href="#pricing-section" style="text-decoration: none;" class="nav-link">Services</a></li>
-               
-
-
-                        <li><a href="#pricing-section" style="text-decoration: none;" class="nav-link">Pricing</a></li>
-                        <li><a href="#about-section" style="text-decoration: none;" class="nav-link">About</a></li> 
-                    </ul> 
-                </section>
-            </nav>    
-            
-      
-        </header>
-
-
-        <!--Banner Section-->
-        <section id="container-banner">
-            <h2>Banner</h2>
-            <div class="book-appointment">
-                <button id="appointment-button">Book an Appointment</button>
-                
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#">Izzy Alteration</a>
             </div>
             
-        </section>
-        
-        <!--Gallery Section-->
-        <section id="mens-gallery">
-            <h2>Men's Gallery</h2>
-        
-        </section>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Book an Appointment</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Account ▼
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/home/bernard/Desktop/Bernard-Business/html/signup.html" class="dropdown-link">Create</a></li>
+                        <li><a href="/home/bernard/Desktop/Bernard-Business/html/login.html" class="dropdown-link">Log In</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                
+               
+            </ul>
+        </div>
+    </nav>
 
-        <section id="womens-gallery">
-            <h2>Women's Gallery</h2>
-  
-        
-        </section>
+    <main class="main-content">
+        <h1>Welcome to Our Website</h1>
+        <p>This is a responsive design example with mobile-first approach.</p>
+    </main>
 
-        <!--Footer Section-->
-        <footer>
-            <p>&copy; 2025 Your Company</p>
-        </footer>
-    </div>
-        <!--link to javascript file-->
-        <script src="js/main.js" defer></script>
+    <script src="/home/bernard/Desktop/Bernard-Business/javascript/index.js"></script>
 </body>
 </html>
