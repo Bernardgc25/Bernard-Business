@@ -212,6 +212,13 @@ h2 {
     animation: popIn 0.3s ease;
 }
 
+/*company name*/
+.back-to-hompage-link{
+    position: relative;
+    top: 1rem;
+    text-align: center;
+}
+
 @keyframes popIn {
     from {
         opacity: 0;
