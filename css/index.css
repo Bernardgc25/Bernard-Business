@@ -433,6 +433,13 @@ body {
     }
 }
 
+/* Ensure hamberger menu is hidden above 600px */
+@media (min-width: 601px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
 /* Small mobile devices under 480px */
 @media (max-width: 480px) {
     .nav-container {
