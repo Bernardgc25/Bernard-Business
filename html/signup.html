@@ -3,10 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth Form</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/index.css">
     <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/signup.css">
+
 </head>
 <body>
+    <!--Header Section-->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#">Izzy Alteration</a>
+                </div>
+                
+                <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Book an Appointment</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            Account ⌄ 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/signup.html" class="dropdown-link">Create</a></li>
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/login.html" class="dropdown-link">Log In</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    
+                
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Signup-Section-->
     <div class="container">
         <div class="form-container">
             <!-- Sign Up Form -->
@@ -35,9 +77,7 @@
                 <p class="switch-form">
                     Already have an account? <a href="/home/bernard/Desktop/Bernard-Business/html/login.html" onclick="showLogin()">Login here</a>
                 </p>
-                    <div class="back-to-hompage-link">
-                        <h3><a href="/home/bernard/Desktop/Bernard-Business/html/index.html" style="text-decoration: none;">Izzy Alteration</a></h3>
-                    </div>
+                    
             </div>
 
             <!-- Login Form -->
@@ -77,6 +117,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/home/bernard/Desktop/Bernard-Business/javascript/signup.js"></script>
 </body>
 </html>
