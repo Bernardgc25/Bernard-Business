@@ -486,59 +486,68 @@ html, body {
     width: 100%;
 }
 
-/*Signup Page*/
-/* Form Container Styles - CENTERED */
-.form-page-container {
+
+/*Signup Section*/
+.Signup-container {
+    width: 100%;
+    max-width: 450px;
+    perspective: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0 auto;
+    min-height: 100vh; /* This ensures vertical centering works properly */
+    padding: 20px; /* Optional: adds some spacing on smaller screens */
 }
 
-.container {
-    width: 100%;
-    max-width: 450px;
-    position: relative;
-}
-
-/* Form Container */
 .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+}
+
+/* Form wrapper styles */
+.form-wrapper {
     background: white;
     border-radius: 20px;
+    padding: 40px 30px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-
-/* Form Wrapper - CENTERED */
-.form-wrapper {
-    padding: 40px;
-    display: none;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
+    transform: rotateY(180deg);
+    visibility: hidden;
 }
 
 .form-wrapper.active {
-    display: block;
     opacity: 1;
-    transform: translateY(0);
+    transform: rotateY(0deg);
+    visibility: visible;
+    position: relative;
 }
 
-/* Headings */
+/* Form header */
 .form-wrapper h2 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
-    font-size: 2rem;
+    font-size: 28px;
     font-weight: 600;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-/* Input Groups */
+/* Input group styles */
 .input-group {
     position: relative;
     margin-bottom: 25px;
@@ -546,9 +555,9 @@ html, body {
 
 .input-group input {
     width: 100%;
-    padding: 15px;
-    border: 2px solid #e1e1e1;
-    border-radius: 10px;
+    padding: 15px 20px;
+    border: 2px solid #e1e5ee;
+    border-radius: 12px;
     font-size: 16px;
     background: #f8f9fa;
     transition: all 0.3s ease;
@@ -559,6 +568,7 @@ html, body {
     border-color: #667eea;
     background: white;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
 }
 
 .input-group input:valid {
@@ -568,25 +578,25 @@ html, body {
 .input-group label {
     position: absolute;
     top: 50%;
-    left: 15px;
+    left: 20px;
     transform: translateY(-50%);
-    color: #666;
+    color: #6c757d;
     font-size: 16px;
     pointer-events: none;
     transition: all 0.3s ease;
     background: white;
-    padding: 0 5px;
+    padding: 0 8px;
 }
 
 .input-group input:focus + label,
 .input-group input:valid + label {
     top: 0;
-    font-size: 12px;
+    font-size: 14px;
     color: #667eea;
     font-weight: 500;
 }
 
-/* Toggle Password */
+/* Password toggle */
 .toggle-password {
     position: absolute;
     right: 15px;
@@ -596,20 +606,22 @@ html, body {
     user-select: none;
     opacity: 0.6;
     transition: opacity 0.3s ease;
+    background: white;
+    padding: 0 5px;
 }
 
 .toggle-password:hover {
     opacity: 1;
 }
 
-/* Button Styles */
+/* Button styles */
 .btn {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -620,14 +632,14 @@ html, body {
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .btn:active {
     transform: translateY(0);
 }
 
-/* Form Options */
+/* Form options */
 .form-options {
     display: flex;
     justify-content: space-between;
@@ -636,12 +648,12 @@ html, body {
     font-size: 14px;
 }
 
-/* Checkbox Styles */
+/* Checkbox styles */
 .checkbox {
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: #666;
+    color: #6c757d;
 }
 
 .checkbox input {
@@ -651,7 +663,7 @@ html, body {
 .checkmark {
     width: 18px;
     height: 18px;
-    border: 2px solid #ddd;
+    border: 2px solid #e1e5ee;
     border-radius: 4px;
     margin-right: 8px;
     position: relative;
@@ -673,7 +685,6 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-/* Forgot Password */
 .forgot-password {
     color: #667eea;
     text-decoration: none;
@@ -685,18 +696,18 @@ html, body {
     text-decoration: underline;
 }
 
-/* Switch Form */
+/* Switch form links */
 .switch-form {
     text-align: center;
     margin-top: 25px;
-    color: #666;
+    color: #6c757d;
     font-size: 14px;
 }
 
 .switch-form a {
     color: #667eea;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
@@ -705,74 +716,70 @@ html, body {
     text-decoration: underline;
 }
 
-/* Back to Homepage */
-.back-to-hompage-link {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.back-to-hompage-link h3 a {
-    color: #333;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.back-to-hompage-link h3 a:hover {
-    color: #667eea;
-}
-
-/* Success Message */
+/* Success message */
 .success-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
     background: white;
-    padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     text-align: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    max-width: 400px;
-    width: 90%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }
 
 .success-message.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
+    display: block;
+    animation: slideUp 0.4s ease;
 }
 
 .success-message h3 {
     color: #4CAF50;
     margin-bottom: 15px;
-    font-size: 1.8rem;
+    font-size: 24px;
 }
 
 .success-message p {
-    color: #666;
+    color: #6c757d;
     margin-bottom: 25px;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-.success-message .btn {
-    max-width: 120px;
-    margin: 0 auto;
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 480px) {
+    .Signup-container {
+        max-width: 100%;
+    }
+    
     .form-wrapper {
-        padding: 30px 25px;
+        padding: 30px 20px;
     }
     
     .form-wrapper h2 {
-        font-size: 1.6rem;
+        font-size: 24px;
+    }
+    
+    .input-group input {
+        padding: 12px 15px;
+    }
+    
+    .btn {
+        padding: 12px;
     }
     
     .form-options {
@@ -780,41 +787,28 @@ html, body {
         gap: 15px;
         align-items: flex-start;
     }
-    
-    .input-group input {
-        padding: 12px;
-    }
 }
 
-/* Loading State */
+/* Loading state */
 .btn.loading {
     pointer-events: none;
     opacity: 0.7;
+    position: relative;
 }
 
 .btn.loading::after {
     content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
     border: 2px solid transparent;
     border-top: 2px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-left: 10px;
+    right: 20px;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-/* Error State */
-.input-group.error input {
-    border-color: #e74c3c;
-    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
-}
-
-.input-group.error label {
-    color: #e74c3c;
 }
