@@ -1,177 +1,103 @@
 // Form switching functionality
 function showLogin() {
+    event.preventDefault();
     document.getElementById('signup-form').classList.remove('active');
     document.getElementById('login-form').classList.add('active');
 }
 
 function showSignup() {
+    event.preventDefault();
     document.getElementById('login-form').classList.remove('active');
     document.getElementById('signup-form').classList.add('active');
 }
 
 // Password visibility toggle
 function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-    input.setAttribute('type', type);
+    const passwordInput = document.getElementById(inputId);
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
 }
 
-// Utility functions
-function showError(input, message) {
-    const inputGroup = input.parentElement;
-    input.classList.add('error');
-    
-    // Remove existing error message
-    let errorMessage = inputGroup.querySelector('.error-message');
-    if (!errorMessage) {
-        errorMessage = document.createElement('span');
-        errorMessage.className = 'error-message';
-        inputGroup.appendChild(errorMessage);
-    }
-    errorMessage.textContent = message;
-}
-
-function clearError(input) {
-    input.classList.remove('error');
-    const errorMessage = input.parentElement.querySelector('.error-message');
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-}
-
+// Success message handling
 function showSuccess(message) {
-    const successMessage = document.getElementById('successMessage');
-    const successText = document.getElementById('successText');
-    successText.textContent = message;
-    successMessage.style.display = 'block';
+    document.getElementById('successText').textContent = message;
+    document.getElementById('successMessage').classList.add('active');
+    document.getElementById('signup-form').classList.remove('active');
+    document.getElementById('login-form').classList.remove('active');
 }
 
 function hideSuccess() {
-    document.getElementById('successMessage').style.display = 'none';
+    document.getElementById('successMessage').classList.remove('active');
+    document.getElementById('signup-form').classList.add('active');
 }
 
-// Validation functions
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function validatePassword(password) {
-    return password.length >= 6;
-}
-
-function validateName(name) {
-    return name.trim().length >= 2;
-}
-
-// Sign Up Form Handler
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('signupName');
-    const email = document.getElementById('signupEmail');
-    const password = document.getElementById('signupPassword');
-    const confirmPassword = document.getElementById('confirmPassword');
-    
-    let isValid = true;
-    
-    // Clear previous errors
-    [name, email, password, confirmPassword].forEach(input => clearError(input));
-    
-    // Validate name
-    if (!validateName(name.value)) {
-        showError(name, 'Name must be at least 2 characters long');
-        isValid = false;
-    }
-    
-    // Validate email
-    if (!validateEmail(email.value)) {
-        showError(email, 'Please enter a valid email address');
-        isValid = false;
-    }
-    
-    // Validate password
-    if (!validatePassword(password.value)) {
-        showError(password, 'Password must be at least 6 characters long');
-        isValid = false;
-    }
-    
-    // Validate password confirmation
-    if (password.value !== confirmPassword.value) {
-        showError(confirmPassword, 'Passwords do not match');
-        isValid = false;
-    }
-    
-    if (isValid) {
-        // Simulate API call
-        setTimeout(() => {
-            showSuccess(`Account created successfully! Welcome, ${name.value}`);
-            this.reset();
-            showLogin(); // Switch to login form after successful signup
-        }, 1000);
-    }
-});
-
-// Login Form Handler
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('loginEmail');
-    const password = document.getElementById('loginPassword');
-    
-    let isValid = true;
-    
-    // Clear previous errors
-    [email, password].forEach(input => clearError(input));
-    
-    // Validate email
-    if (!validateEmail(email.value)) {
-        showError(email, 'Please enter a valid email address');
-        isValid = false;
-    }
-    
-    // Validate password
-    if (!validatePassword(password.value)) {
-        showError(password, 'Password must be at least 6 characters long');
-        isValid = false;
-    }
-    
-    if (isValid) {
-        // Simulate API call
-        setTimeout(() => {
-            showSuccess('Login successful! Redirecting to dashboard...');
-            this.reset();
-        }, 1000);
-    }
-});
-
-// Real-time validation
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', function() {
-        clearError(this);
-    });
-});
-
-// Remember me functionality
-document.getElementById('rememberMe').addEventListener('change', function() {
-    if (this.checked) {
-        console.log('Remember me enabled');
-        // In a real app, you would set a cookie or use localStorage
-    }
-});
-
-// Forgot password functionality
-document.querySelector('.forgot-password').addEventListener('click', function(e) {
-    e.preventDefault();
-    const email = prompt('Please enter your email address:');
-    if (email && validateEmail(email)) {
-        showSuccess('Password reset instructions have been sent to your email.');
-    } else if (email) {
-        alert('Please enter a valid email address.');
-    }
-});
-
-// Initialize form
+// Form validation and submission
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Auth form initialized');
+    // Signup form handling
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Basic validation
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+        
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long!');
+            return;
+        }
+        
+        // Simulate successful signup
+        console.log('Signup attempt:', { name, email, password });
+        showSuccess('Account created successfully! You can now login.');
+        
+        // Clear form
+        signupForm.reset();
+    });
+    
+    // Login form handling
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        // Simulate login validation
+        console.log('Login attempt:', { email, password, rememberMe });
+        
+        // For demo purposes, always show success
+        showSuccess('Login successful! Welcome back.');
+        
+        // Clear form
+        loginForm.reset();
+    });
+    
+    // Enhanced input label handling
+    const inputs = document.querySelectorAll('.input-group input');
+    inputs.forEach(input => {
+        // Add placeholder for CSS to work with :not(:placeholder-shown)
+        if (!input.getAttribute('placeholder')) {
+            input.setAttribute('placeholder', ' ');
+        }
+        
+        // Handle input focus/blur for better UX
+        input.addEventListener('focus', function() {
+            this.parentElement.querySelector('label').style.color = '#667eea';
+        });
+        
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.querySelector('label').style.color = '#999';
+            }
+        });
+    });
 });
