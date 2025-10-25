@@ -395,26 +395,27 @@ html, body {
 /*Service-section*/
 .service-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto; 
+  grid-template-areas: 
+    "top top"
+    "left right";
   gap: 10px;
-  height: 400px;
+  height: 100vh;
+}
+
+.top {
+  grid-area: top;
+  background-color: rgb(234, 234, 164);
+  padding: 20px;
 }
 
 .left {
-  grid-column: 1;
-  grid-row: 1 / 3;
-  background-color: rgb(238, 238, 173);
+  grid-area: left;
+  background-color: lightblue;
+  padding: 20px;
 }
 
-.right-top {
-  grid-column: 2;
-  grid-row: 1;
-  background-color: lightgreen;
-}
-
-.right-bottom {
-  grid-column: 2;
-  grid-row: 2;
+.right {
+  grid-area: right;
   background-color: lightpink;
+  padding: 20px;
 }
