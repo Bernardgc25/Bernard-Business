@@ -398,8 +398,10 @@ html, body {
   grid-template-areas: 
     "top top"
     "left right";
+  grid-template-columns: auto auto;
   gap: 10px;
   height: 100vh;
+  margin-top: 10px;
 }
 
 .top {
@@ -408,14 +410,18 @@ html, body {
   padding: 20px;
 }
 
-.left {
+.bottom-left {
   grid-area: left;
   background-color: lightblue;
   padding: 20px;
 }
 
-.right {
+.bottom-right {
   grid-area: right;
   background-color: lightpink;
   padding: 20px;
+}
+
+.service-name{
+
 }
