@@ -1,3 +1,6 @@
+// link to login page
+
+
 // Form switching functionality
 function showLogin() {
     event.preventDefault();
