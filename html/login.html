@@ -3,70 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Log In</title>
+    <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/index.css">
     <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/login.css">
+
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Please sign in to your account</p>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Enter your email"
-                        required
-                    >
-                    <span class="error-message" id="emailError"></span>
+    <!--Header Section-->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#">Izzy Alteration</a>
                 </div>
                 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                    <span class="error-message" id="passwordError"></span>
-                </div>
+                <button class="menu-toggle" aria-label="Toggle menu">☰</button>
                 
-                <div class="form-options">
-                    <label class="checkbox-container">
-                        <input type="checkbox" id="rememberMe">
-                        <span class="checkmark"></span>
-                        Remember me
-                    </label>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Book an Appointment</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            Account ⌄ 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/signup.html" class="dropdown-link">Create</a></li>
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/login.html" class="dropdown-link">Log In</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    
                 
-                <button type="submit" class="login-btn" id="loginBtn">
-                    <span class="btn-text">Sign In</span>
-                    <div class="spinner hidden" id="spinner"></div>
-                </button>
-            </form>
-            
-            <div class="signup-link">
-                Don't have an account? <a href="/home/bernard/Desktop/Bernard-Business/html/signup.html">Sign up</a>
+                </ul>
             </div>
+        </nav>
+    </header>
 
-            <div class="back-to-hompage-link">
-                <h3><a href="/home/bernard/Desktop/Bernard-Business/html/index.html" style="text-decoration: none;">Izzy Alteration</a></h3>
+    <!--Signup-Section-->
+    <div class="Signup-container">
+        <div class="form-container">
+            
+            <!-- Login Form -->
+            <div class="form-wrapper" id="login-form">
+                <h2>Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="loginEmail" required>
+                        <label for="loginEmail">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" required>
+                        <label for="loginPassword">Password</label>
+                        <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p class="switch-form">
+                    Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a>
+                </p>
             </div>
-
-        </div>
         
-        <div class="notification hidden" id="notification">
-            <span id="notificationMessage"></span>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>Success!</h3>
+                <p id="successText"></p>
+                <button class="btn" onclick="hideSuccess()">OK</button>
+            </div>
         </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script src="/home/bernard/Desktop/Bernard-Business/javascript/signup.js"></script>
 </body>
 </html>
