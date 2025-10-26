@@ -400,6 +400,7 @@ html, body {
   height: 100vh;
   gap: .5rem;
   padding: .5rem;
+
 }
 
 .service-container-subgrid-top{
@@ -450,8 +451,4 @@ html, body {
 
 .bottom-right-1{
   background-color: rgb(153, 211, 231);
-}
-
-.examples{
-
 }
