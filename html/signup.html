@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/index.css">
+    <link rel="stylesheet" href="/home/bernard/Desktop/Bernard-Business/css/signup.css">
+
+</head>
+<body>
+    <!--Header Section-->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#">Izzy Alteration</a>
+                </div>
+                
+                <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Book an Appointment</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            Account ⌄ 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/signup.html" class="dropdown-link">Create</a></li>
+                            <li><a href="/home/bernard/Desktop/Bernard-Business/html/login.html" class="dropdown-link">Log In</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    
+                
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Signup-Section-->
+    <div class="signup-container">
+        <div class="form-container">
+            <!-- Sign Up Form -->
+            <div class="form-wrapper active" id="signup-form">
+                <h2>Create Account</h2>
+                <form id="signupForm">
+                    <div class="input-group">
+                        <input type="text" id="signupName" required>
+                        <label for="signupName">Full Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="signupEmail" required>
+                        <label for="signupEmail">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="signupPassword" required>
+                        <label for="signupPassword">Password</label>
+                        <span class="toggle-password" onclick="togglePassword('signupPassword')">👁️</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirmPassword" required>
+                        <label for="confirmPassword">Confirm Password</label>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <p class="switch-form">
+                    Already have an account? <a href="/home/bernard/Desktop/Bernard-Business/html/login.html">Login here</a>
+                    <!-- Already have an account? <a href="/home/bernard/Desktop/Bernard-Business/html/login.html" onclick="showLogin()">Login here</a> -->
+                </p>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>Success!</h3>
+                <p id="successText"></p>
+                <button class="btn" onclick="hideSuccess()">OK</button>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="/home/bernard/Desktop/Bernard-Business/javascript/signup.js"></script>
+</body>
+</html>
