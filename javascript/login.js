@@ -1,188 +1,93 @@
-class LoginForm {
-    constructor() {
-        this.form = document.getElementById('loginForm');
-        this.emailInput = document.getElementById('email');
-        this.passwordInput = document.getElementById('password');
-        this.loginBtn = document.getElementById('loginBtn');
-        this.spinner = document.getElementById('spinner');
-        this.btnText = document.querySelector('.btn-text');
-        
-        this.init();
-    }
-    
-    init() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        this.setupInputValidation();
-    }
-    
-    setupInputValidation() {
-        // Real-time validation
-        this.emailInput.addEventListener('blur', () => this.validateEmail());
-        this.passwordInput.addEventListener('blur', () => this.validatePassword());
-        
-        // Clear errors on input
-        this.emailInput.addEventListener('input', () => this.clearError('emailError'));
-        this.passwordInput.addEventListener('input', () => this.clearError('passwordError'));
-    }
-    
-    validateEmail() {
-        const email = this.emailInput.value.trim();
-        const emailError = document.getElementById('emailError');
-        
-        if (!email) {
-            this.showError('emailError', 'Email is required');
-            this.emailInput.classList.add('error');
-            return false;
-        }
-        
-        if (!this.isValidEmail(email)) {
-            this.showError('emailError', 'Please enter a valid email address');
-            this.emailInput.classList.add('error');
-            return false;
-        }
-        
-        this.clearError('emailError');
-        this.emailInput.classList.remove('error');
-        return true;
-    }
-    
-    validatePassword() {
-        const password = this.passwordInput.value;
-        const passwordError = document.getElementById('passwordError');
-        
-        if (!password) {
-            this.showError('passwordError', 'Password is required');
-            this.passwordInput.classList.add('error');
-            return false;
-        }
-        
-        if (password.length < 6) {
-            this.showError('passwordError', 'Password must be at least 6 characters');
-            this.passwordInput.classList.add('error');
-            return false;
-        }
-        
-        this.clearError('passwordError');
-        this.passwordInput.classList.remove('error');
-        return true;
-    }
-    
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    showError(elementId, message) {
-        const errorElement = document.getElementById(elementId);
-        errorElement.textContent = message;
-    }
-    
-    clearError(elementId) {
-        const errorElement = document.getElementById(elementId);
-        errorElement.textContent = '';
-    }
-    
-    showLoading() {
-        this.loginBtn.disabled = true;
-        this.btnText.style.opacity = '0';
-        this.spinner.classList.remove('hidden');
-    }
-    
-    hideLoading() {
-        this.loginBtn.disabled = false;
-        this.btnText.style.opacity = '1';
-        this.spinner.classList.add('hidden');
-    }
-    
-    showNotification(message, type = 'success') {
-        const notification = document.getElementById('notification');
-        const notificationMessage = document.getElementById('notificationMessage');
-        
-        notificationMessage.textContent = message;
-        notification.className = `notification ${type} show`;
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 4000);
-    }
-    
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        // Validate form
-        const isEmailValid = this.validateEmail();
-        const isPasswordValid = this.validatePassword();
-        
-        if (!isEmailValid || !isPasswordValid) {
-            this.showNotification('Please fix the errors in the form', 'error');
-            return;
-        }
-        
-        // Get form data
-        const formData = {
-            email: this.emailInput.value.trim(),
-            password: this.passwordInput.value,
-            rememberMe: document.getElementById('rememberMe').checked
-        };
-        
-        // Simulate API call
-        this.showLoading();
-        
-        try {
-            // In a real application, you would make an API call here
-            await this.simulateLogin(formData);
-            
-            this.showNotification('Login successful! Redirecting...', 'success');
-            
-            // Reset form
-            this.form.reset();
-            
-            // In a real application, you would redirect the user
-            // setTimeout(() => {
-            //     window.location.href = '/dashboard';
-            // }, 2000);
-            
-        } catch (error) {
-            this.showNotification('Login failed. Please check your credentials.', 'error');
-        } finally {
-            this.hideLoading();
-        }
-    }
-    
-    simulateLogin(formData) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simulate successful login for demo@example.com / password123
-                if (formData.email === 'demo@example.com' && formData.password === 'password123') {
-                    resolve({ success: true, message: 'Login successful' });
-                } else {
-                    reject({ success: false, message: 'Invalid credentials' });
-                }
-            }, 1500);
-        });
-    }
-}
-
-// Initialize the login form when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new LoginForm();
-});
-
-// Additional utility functions
-function togglePasswordVisibility(inputId, toggleId) {
+// Toggle password visibility
+function togglePassword(inputId) {
     const passwordInput = document.getElementById(inputId);
-    const toggleBtn = document.getElementById(toggleId);
+    const toggleIcon = passwordInput.nextElementSibling.nextElementSibling;
     
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        toggleBtn.textContent = 'Hide';
+        toggleIcon.textContent = '🙈';
     } else {
         passwordInput.type = 'password';
-        toggleBtn.textContent = 'Show';
+        toggleIcon.textContent = '👁️';
     }
 }
 
-// Export for potential module use
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = LoginForm;
+// Show signup form (placeholder function)
+function showSignup() {
+    alert('Sign up functionality would be implemented here');
+    // In a real application, this would switch to a signup form
 }
+
+// Show success message
+function showSuccess(message) {
+    const successMessage = document.getElementById('successMessage');
+    const successText = document.getElementById('successText');
+    
+    successText.textContent = message;
+    successMessage.style.display = 'block';
+}
+
+// Hide success message
+function hideSuccess() {
+    const successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'none';
+}
+
+// Form validation and submission
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
+    
+    // Basic validation
+    if (!email || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    // Password validation (at least 6 characters)
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return;
+    }
+    
+    // Simulate login process
+    // In a real application, this would make an API call
+    console.log('Login attempt:', { email, password, rememberMe });
+    
+    // Show success message
+    showSuccess('You have successfully logged in!');
+    
+    // Reset form
+    this.reset();
+    
+    // Reset labels position
+    const labels = document.querySelectorAll('.input-group label');
+    labels.forEach(label => {
+        label.style.top = '15px';
+        label.style.fontSize = '16px';
+        label.style.color = '#777';
+    });
+});
+
+// Add focus/blur events to inputs to handle label animation
+document.querySelectorAll('.input-group input').forEach(input => {
+    input.addEventListener('focus', function() {
+        this.parentElement.querySelector('label').style.color = '#6a11cb';
+    });
+    
+    input.addEventListener('blur', function() {
+        if (!this.value) {
+            this.parentElement.querySelector('label').style.color = '#777';
+        }
+    });
+});
