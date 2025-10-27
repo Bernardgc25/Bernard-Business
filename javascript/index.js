@@ -1,3 +1,4 @@
+//Header and Navigation Menu Functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu functionality
     const menuToggle = document.querySelector('.menu-toggle');
